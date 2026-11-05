@@ -1,1 +1,35 @@
+# Fase 4 Componente práctico - Prácticas simuladas
 # Ejercicio 1: Sistema Integral de Gestión de Clientes, Servicios y Reservas
+
+from abc import ABC, abstractmethod
+
+
+# ==================   Excepciones Personalizadas   ==================
+
+class Error_Software_FJ(Exception):                   # Excepción base para errores del sistema de Software FJ
+    pass
+
+class Cliente_Invalido_Error(Error_Software_FJ):      # Excepción personalizada para controlar errores en lo datos del cliente
+    pass
+
+class Servicio_NoDisponible_Error(Error_Software_FJ): # Excepción personalizada para controlar errores en los servicios
+    pass
+
+class Reserva_Invalida_Error(Error_Software_FJ):      # Excepción personalizada para controlar errores en las reservas
+    pass
+
+# =====================================================================
+
+
+# =====================   Clase Abstracta Base   ======================
+
+class Entidad_Base(ABC):                               # clase abstracta que represente entidades generales del sistema
+    @abstractmethod
+    def mostrar_informacion(self):                     # Metodo que se debe implmentar en todas las clases que hereden de Entidad_Base
+        pass
+
+# ======================================================================
+
+
+
+
