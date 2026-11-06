@@ -9,7 +9,7 @@ from abc import ABC, abstractmethod
 class Error_Software_FJ(Exception):                   # Excepción base para errores del sistema de Software FJ
     pass
 
-class Cliente_Invalido_Error(Error_Software_FJ):      # Excepción personalizada para controlar errores en lo datos del cliente
+class Cliente_Invalido_Error(Error_Software_FJ):      # Excepción personalizada para controlar errores en los datos del cliente
     pass
 
 class Servicio_NoDisponible_Error(Error_Software_FJ): # Excepción personalizada para controlar errores en los servicios
@@ -24,8 +24,9 @@ class Reserva_Invalida_Error(Error_Software_FJ):      # Excepción personalizada
 # =====================   Clase Abstracta Base   ======================
 
 class Entidad_Base(ABC):                               # clase abstracta que represente entidades generales del sistema
+   
     @abstractmethod
-    def mostrar_informacion(self):                     # Metodo que se debe implmentar en todas las clases que hereden de Entidad_Base
+    def mostrar_informacion(self):                     # Metodo que se debe implementar en todas las clases que hereden de Entidad_Base
         pass
 
 # ======================================================================
@@ -33,3 +34,26 @@ class Entidad_Base(ABC):                               # clase abstracta que rep
 
 
 
+# ====================   Clase Abstracta Servicio   ====================
+
+class Servicio(Entidad_Base, ABC):             # Clase abstracta que define los atributos principales de los servicios epecializados
+
+    def __init__(self, nombre_servicio, tarifa_por_dia):
+        self.__nombre_servicio = nombre_servicio
+        self.__tarifa_por_dia = tarifa_por_dia
+
+    def get_nombre_servicio(self):                      # Metodo para mostrar el nombre del servicio en la información final
+        return self.__nombre_servicio
+
+    def get_tarifa_por_dia(self):                       # Metodo para mostrar la tarifa por día en la información final
+        return self.__tarifa_por_dia
+
+    @abstractmethod                                     # Metodo que se debe implementar en todas las clases que hereden de Servicio
+    def mostrar_informacion(self):
+        pass
+                            # Metodo que se debe implementar en todas las clases que hereden de Servicio para calcular el costo total
+    @abstractmethod         
+    def calcular_costo(self, diracion):
+        pass
+
+# ======================================================================
