@@ -13,12 +13,8 @@ from Excepciones import Cliente_Invalido_Error
 
 # Configuración del archivo de logs para persistencia de fallos y auditoría
 # Registra fecha, hora, nivel de severidad y descripción en 'sistema_fj.log'
-logging.basicConfig(
-    filename="sistema_fj.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    encoding="utf-8"
-)
+from Logs import archivo_Logs
+archivo_Logs()
 
 
 class Cliente(Entidad_Base):
