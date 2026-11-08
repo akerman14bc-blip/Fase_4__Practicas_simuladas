@@ -1,10 +1,8 @@
-# ==============================================================================
 # MÓDULO: Clientes.py
-# DESCRIPCIÓN: Implementación de la entidad Cliente aplicando principios de POO:
-#              abstracción, herencia, encapsulación estricta y excepciones.
-# ==============================================================================
+# se realizo la  Implementación de la entidad Cliente aplicando principios de POO:
+# abstracción, herencia, encapsulación estricta y excepciones.
 
-# Se importa el módulo estándar logging para registrar eventos y errores en archivo
+# Se  importa el módulo estándar logging para registrar eventos y errores en archivo
 import logging
 
 # Se importa la clase abstracta padre desde el archivo de arquitectura base
@@ -39,9 +37,9 @@ class Cliente(Entidad_Base):
         self.correo = correo
         self.telefono = telefono
 
-    # --------------------------------------------------------------------------
+   
     # GESTIÓN Y ENCAPSULACIÓN DEL ATRIBUTO: id_cliente
-    # --------------------------------------------------------------------------
+   
     @property
     def id_cliente(self):
         # Getter: Retorna el identificador privado del cliente
@@ -55,9 +53,8 @@ class Cliente(Entidad_Base):
         # Se almacena como atributo privado asegurando formato de texto limpio
         self.__id_cliente = str(valor).strip()
 
-    # --------------------------------------------------------------------------
     # GESTIÓN Y ENCAPSULACIÓN DEL ATRIBUTO: nombre
-    # --------------------------------------------------------------------------
+   
     @property
     def nombre(self):
         # Getter: Retorna el nombre privado del cliente
@@ -74,9 +71,8 @@ class Cliente(Entidad_Base):
         # Se asigna el valor depurado al atributo privado
         self.__nombre = valor.strip()
 
-    # --------------------------------------------------------------------------
     # GESTIÓN Y ENCAPSULACIÓN DEL ATRIBUTO: correo
-    # --------------------------------------------------------------------------
+   
     @property
     def correo(self):
         # Getter: Retorna el correo electrónico privado
@@ -90,9 +86,8 @@ class Cliente(Entidad_Base):
         # Se guarda el correo electrónico sin espacios en los extremos
         self.__correo = valor.strip()
 
-    # --------------------------------------------------------------------------
     # GESTIÓN Y ENCAPSULACIÓN DEL ATRIBUTO: telefono
-    # --------------------------------------------------------------------------
+ 
     @property
     def telefono(self):
         # Getter: Retorna el número de teléfono privado
@@ -108,9 +103,9 @@ class Cliente(Entidad_Base):
         # Se asigna al atributo privado
         self.__telefono = valor_str
 
-    # --------------------------------------------------------------------------
+  
     # MÉTODOS PÚBLICOS Y SOBRESCRITURA DE MÉTODOS ABSTRACTOS
-    # --------------------------------------------------------------------------
+    
     def mostrar_informacion(self):
         """
         Implementación concreta del método polimórfico heredado de Entidad_Base.
@@ -128,15 +123,12 @@ class Cliente(Entidad_Base):
         # Representación textual legible de la instancia
         return f"Cliente({self.__id_cliente} - {self.__nombre})"
 
+# BLOQUE DE PRUEBAS UNITARIAS Y CONTROL DE EXCEPCIONES
 
-# ==============================================================================
-# BLOQUE DE PRUEBAS UNITARIAS Y CONTROL AVANZADO DE EXCEPCIONES
-# Demuestra el uso de try / except / else / finally y registro en archivo de logs
-# ==============================================================================
 if __name__ == "__main__":
     print("=== INICIANDO PRUEBAS DE LA CLASE CLIENTE ===\n")
 
-    # Caso 1: Instanciación correcta (Demuestra try / except / else / finally)
+    # Caso 1: Instanciación correcta
     print("--- Caso 1: Creación de cliente válido ---")
     try:
         # Se intentan cargar datos que satisfacen todas las reglas de negocio
