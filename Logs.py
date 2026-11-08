@@ -8,7 +8,7 @@ def archivo_Logs():
         filename="errores y eventos_Softwrae_FJ_log.txt",
         level=logging.INFO,
         format="[%(asctime)s] [%(levelname)s]: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
+        datefmt="%Y-%m-%d %H:%M:%S",
         encoding="utf-8"
     )
 
