@@ -38,31 +38,29 @@ def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
     print(f"ID cliente: {id_cliente} | Nombre: {nombre} | Correo: {correo} | Teleforno: {telefono}")
 
 
-def nueva_reserva(id_reserva=None, id_cliente=None, servicio=None, dias=None, **kwargs):
+def nueva_reserva#( ??? , id_cliente=None, servicio=None, dias/duracion =None, **kwargs):  Faltan atributos 
 
     try:
-        logging.info(f"[Registro]: Iniciando Registro de Nueva Reserva: ID{id_reserva}")
+        logging.info(f"[Registro]: Iniciando Registro de Nueva Reserva: ID")
 
-        if id_reserva is None or id_cliente is None or servicio is None or dias is None:
-            raise Reserva_Invalida_Error(
-                "Debe agregar todos los parametros: 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Días'")
-            
+# Faltan excepciones
+        
         cliente = sistema.buscar_cliente(id_cliente)
         if cliente is None:
             raise Reserva_Invalida_Error(f"No existe un cliente registrado con ID {id_cliente}")
         
-        reserva = Reserva(id_reserva, cliente, servicio, dias, **kwargs)
+###     reserva = Reserva(id_reserva, cliente, servicio, dias, **kwargs)     !! Faltan Atributos
         sistema. registrar_reserva(reserva)
-        logging.info(f"[Reserva]: Éxito al crear la reserva: ID{id_reserva}")
+        logging.info(f"[Reserva]: Éxito al crear la reserva: ID")
 
     except Error_SoftwareFJ as error:
-        logging.warning(f"No se pudo registrar la reserva {id_reserva}")
-        raise Reserva_Invalida_Error(f"al registrar la reserva {id_reserva}: {error}")
+        logging.warning(f"No se pudo registrar la reserva : ID")
+        raise Reserva_Invalida_Error(f"al registrar la reserva ID: {error}")
             
 
     print("")
     print("Nueva Reserva creada con éxito\n")
-    print(f"ID Reserva: {id_reserva} | ID Cliente: {id_cliente} \n")
+    print(f"ID Reserva:  | ID Cliente: {id_cliente} \n")
     print(servicio.mostrar_informacion())
     print("")
     print(reserva.mostrar_informacion())
