@@ -27,7 +27,7 @@ def ejecutar_simulacion():
         ("Operación 2 Crear Nueva Reserva: Fallida (Los días deben ser una entrada numérica)",
          
             lambda: nueva_reserva(
-                id_reserva="R001", id_cliente="A001", servicio=sala_mediana, dias="dos", pagar_impuesto=False)),
+            ### Faltan atributos  id_cliente="A001", servicio=sala_mediana, dias="dos", pagar_impuesto=False)),
 
 
                 
@@ -41,7 +41,7 @@ def ejecutar_simulacion():
         ("Operación 4 Crear Nueva Reserva: Exitoso",
          
             lambda: nueva_reserva(
-                id_reserva="R002", id_cliente="A001", servicio=sala_mediana, dias=2, pagar_impuesto=True)),
+            ### Faltan atributos
 
 
 
@@ -55,7 +55,7 @@ def ejecutar_simulacion():
         ("Operación 6 Crear Nueva Reserva: Fallida (ID de cliente inexistente)",
          
             lambda: nueva_reserva(
-                id_reserva="R003", id_cliente="A002", servicio=alquiler_laptop, dias=2, seguro_daños=True)),
+          ### Faltan atributos  id_cliente="A002", servicio=alquiler_laptop, dias=2, seguro_daños=True)),
 
 
 
@@ -110,7 +110,3 @@ def ejecutar_simulacion():
     sistema.mostrar_resumen_listas()
 
     print("\n ============   Simulación Finalizada con Éxito   ==================\n")
-
-
-if __name__ == "__main__":
-    ejecutar_simulacion()
