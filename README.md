@@ -102,13 +102,13 @@ Python 3.10 o superior.
 ____________________________________
 Ejecución del Proyecto:
 
-Clonar el repositorio
+Clonar el repositorio: 
 git clone https://github.com/akerman14bc-blip/Fase_4__Practicas_simuladas.git
 
-Entrar al proyecto:
+Entrar al proyecto: 
 cd Fase_4__Practicas_simuladas
 
-Ejecutar la aplicación:
+Ejecutar la aplicación: 
 python Main.py
 
 ____________________________________
