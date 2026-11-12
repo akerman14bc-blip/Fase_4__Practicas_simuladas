@@ -38,7 +38,7 @@ def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
     print(f"ID cliente: {id_cliente} | Nombre: {nombre} | Correo: {correo} | Teleforno: {telefono}")
 
 
-def nueva_reserva#( ??? , id_cliente=None, servicio=None, dias/duracion =None, **kwargs):  Faltan atributos 
+def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion =None, **kwargs):  #### Faltan atributos 
 
     try:
         logging.info(f"[Registro]: Iniciando Registro de Nueva Reserva: ID")
@@ -49,7 +49,7 @@ def nueva_reserva#( ??? , id_cliente=None, servicio=None, dias/duracion =None, *
         if cliente is None:
             raise Reserva_Invalida_Error(f"No existe un cliente registrado con ID {id_cliente}")
         
-###     reserva = Reserva(id_reserva, cliente, servicio, dias, **kwargs)     !! Faltan Atributos
+        reserva = Reserva(id_reserva, cliente, servicio, dias, **kwargs)   ##  !! Faltan Atributos
         sistema. registrar_reserva(reserva)
         logging.info(f"[Reserva]: Éxito al crear la reserva: ID")
 
@@ -79,7 +79,6 @@ def crear_servicio_alquiler(nombre_servicio=None, tarifa_dia=None, equipo=None):
         
         servicio = ServicioAlquilerEquipos(nombre_servicio, tarifa_dia, equipo)
         sistema.registrar_servicio(servicio)
-        sistema.registrar_servicio(servicio)
         logging.info(f"[Servicio]: Nuevo Servicio de Alquiler creado:{servicio}")
     
     except Error_SoftwareFJ as error:
@@ -88,7 +87,7 @@ def crear_servicio_alquiler(nombre_servicio=None, tarifa_dia=None, equipo=None):
     
     print("")
     print("Servicio de Alquiler de Equipos creado con éxito\n")
-    print(f"Nombre: {nombre_servicio} | Tarifa diaria: {tarifa_dia} | Equipo: {equipo}")
+    print(f"Nombre: {nombre_servicio} | Tarifa diaria: ${tarifa_dia} | Equipo: {equipo}")
 
 
 def crear_servicio_reserva(nombre_servicio=None, tarifa_dia=None, capacidad=None):
@@ -103,7 +102,6 @@ def crear_servicio_reserva(nombre_servicio=None, tarifa_dia=None, capacidad=None
         
         servicio = ServicioReservaSalas(nombre_servicio, tarifa_dia, capacidad)
         sistema.registrar_servicio(servicio)
-        sistema.registrar_servicio(servicio)
         logging.info(f"[Servicio]: Nuevo Servicio de Reserva de Salas creado:{servicio}")
 
     except Error_SoftwareFJ as error:
@@ -112,7 +110,7 @@ def crear_servicio_reserva(nombre_servicio=None, tarifa_dia=None, capacidad=None
 
     print("")
     print("Servicio de Reserva de Salas creado con éxito\n")
-    print(f"Nombre: {nombre_servicio} | Tarifa diaria: {tarifa_dia} | Capacidad: {capacidad}")
+    print(f"Nombre: {nombre_servicio} | Tarifa diaria: ${tarifa_dia} | Capacidad: {capacidad} personas")
 
 
 def crear_servicio_asesoria(nombre_servicio=None, tarifa_dia=None, especialidad=None):
@@ -134,7 +132,7 @@ def crear_servicio_asesoria(nombre_servicio=None, tarifa_dia=None, especialidad=
                                
     print("")
     print("Servicio de Asesoría Especilizada creado con éxito\n")
-    print(f"Nombre: {nombre_servicio} | Tarifa diaria: {tarifa_dia} | Área: {especialidad}")
+    print(f"Nombre: {nombre_servicio} | Tarifa diaria: ${tarifa_dia} | Área: {especialidad}")
 
 sala_mediana = ServicioReservaSalas("Reserva de sala Mediana", 80000, 50)
 alquiler_laptop = ServicioAlquilerEquipos("Alquiler de Laptop", 30000, "Laptop Core i5 HP")
