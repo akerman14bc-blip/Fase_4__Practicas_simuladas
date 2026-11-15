@@ -1,3 +1,4 @@
+# Alfonso Morales
 # MÓDULO: Clientes.py
 # se realizo la  Implementación de la entidad Cliente aplicando principios de POO:
 # abstracción, herencia, encapsulación estricta y excepciones.
