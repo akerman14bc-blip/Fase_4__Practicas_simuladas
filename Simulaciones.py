@@ -128,11 +128,11 @@ def ejecutar_simulacion():
                 nombre_servicio="Alquiler TV", equipo="Sony Smart 50'")),
 
 
-        # Operación 10: Prueba de validación por capacidad insuficiente de una sala.
-        ("operación 10 Crear Nuevo Servicio: Fallido (Capacidad insuficiente de la nueva sala)",
+        # Operación 10: Prueba de manejo de errores graves.
+        ("operación 10 Crear Nuevo Servicio: Fallido (Error por fuera de las validaciones)",
 
             lambda: crear_servicio_reserva(
-                nombre_servicio="Sala Pequeña", tarifa_dia=40000, capacidad=19)),
+                nombre_servicio="Sala Pequeña", tarifa_dia=40000, capacidad=s)),
 
 
         # Operación 11: Prueba de confirmación y cancelación de una reserva.
@@ -154,17 +154,30 @@ def ejecutar_simulacion():
 
         try:
             acc()
-            print(f"\nOperación # {numero} procesada correctamente.")
 
         except Error_SoftwareFJ as error:
             logging.error(f"{error}")
             print(f"\nError controlado {error}")
-            print(f"\nError en operación # {numero} controlado correctamente.")
+            info_error = f"\nError en operación # {numero} controlado correctamente."
+            logging.info(info_error)
+            print(info_error)
 
         except Exception as error:
             logging.critical(f"Error inesperado: {error}")
-            print(f"\n¡¡Error inesperado!!: {error}\n")
-            print(f"Error inesperado en operación # {numero}.")
+            print(f"\n¡Error inesperado!: {error}\n")
+            info_error = f"Error inesperado en operación # {numero} controlado."
+            logging.info(info_error)
+            print(info_error)
+
+        else:
+            info = f"\nOperación # {numero} procesada correctamente."
+            logging.info(info)
+            print(info)
+
+        finally:
+            msg = f"\nOperación {numero} finalizada"
+            logging.info(msg)
+            print(msg)
 
 
     # ====================== Resumen Final de la Simulación ======================
@@ -173,9 +186,3 @@ def ejecutar_simulacion():
     sistema.mostrar_resumen_listas()
 
     print("\n ============   Simulación Finalizada con Éxito   ==================\n")
-
-
-# ====================== Ejecución del Programa ======================
-
-if __name__ == "__main__":
-    ejecutar_simulacion()
