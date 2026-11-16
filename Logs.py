@@ -5,7 +5,7 @@ import logging
 
 def archivo_Logs():
     logging.basicConfig(
-        filename="errores y eventos_Softwrae_FJ_log.txt",
+        filename="Logs/errores y eventos_Softwrae_FJ_log.txt",
         level=logging.INFO,
         format="[%(asctime)s] [%(levelname)s]: %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
