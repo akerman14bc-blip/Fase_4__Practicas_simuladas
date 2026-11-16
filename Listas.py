@@ -32,5 +32,5 @@ class Gestion_Listas:
 
     def mostrar_resumen_listas(self):
         print(f"\nClientes registrados: {len(self.clientes_registrados)}")
-        print(f"Servicios disponibles: {len(self.servicios_disponibles)}")
+        print(f"Nuevos servicios disponibles: {len(self.servicios_disponibles)}")
         print(f"Reservas realizadas: {len(self.reservas_realizadas)}")
