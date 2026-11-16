@@ -2,7 +2,7 @@
 from Servicio import (
     ServicioReservaSalas, ServicioAlquilerEquipos, Servicio_Asesoria_Especializada)
 
-from Cliente import Cliente
+from Clientes import Cliente
 
 from Reserva import Reserva
 
