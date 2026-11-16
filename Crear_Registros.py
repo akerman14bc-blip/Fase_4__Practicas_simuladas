@@ -42,20 +42,20 @@ def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
     finally:
         logging.info(f"Finalizó el intento de registro para el cliente {nombre}")
 
-def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion =None, **kwargs):  #### Faltan atributos 
+def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion=None, **kwargs):  
 
     try:
         logging.info(f"[Registro]: Iniciando Registro de Nueva Reserva: ID {id_reserva}")
 
-        if id_reserva is None or id_cliente is None or servicio is None or dias is None:
+        if id_reserva is None or id_cliente is None or servicio is None or duracion is None:
             raise Reserva_Invalida_Error(
-                "Debe agregar todos los parametros: \n\n 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Días'")
+                "Debe agregar todos los parametros: \n\n 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Duración'")
         
         cliente = sistema.buscar_cliente(id_cliente)
         if cliente is None:
             raise Reserva_Invalida_Error(f"No existe un cliente registrado con ID {id_cliente}")
         
-        reserva = Reserva(id_reserva, cliente, servicio, dias, **kwargs)   ##  !! Faltan Atributos
+        reserva = Reserva(id_reserva, cliente, servicio, duracion, **kwargs)   
         sistema. registrar_reserva(reserva)
 
     except Error_SoftwareFJ as error:
