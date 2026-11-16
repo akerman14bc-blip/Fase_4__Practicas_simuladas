@@ -24,7 +24,7 @@ def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
 
         if id_cliente is None or nombre is None or correo is None or telefono is None:
             raise Cliente_Invalido_Error(
-                "Debe agregar todos los parametros: 'ID Cliente' | 'Nombre' | 'Correo' | 'Telefono'")
+                "Debe agregar todos los parametros: \n\n'ID Cliente' | 'Nombre' | 'Correo' | 'Telefono'")
         
         cliente = Cliente(id_cliente, nombre, correo, telefono)
         sistema.registrar_cliente(cliente)
@@ -49,7 +49,7 @@ def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion =None, **
 
         if id_reserva is None or id_cliente is None or servicio is None or dias is None:
             raise Reserva_Invalida_Error(
-                "Debe agregar todos los parametros: 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Días'")
+                "Debe agregar todos los parametros: \n\n 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Días'")
         
         cliente = sistema.buscar_cliente(id_cliente)
         if cliente is None:
@@ -85,7 +85,8 @@ def crear_servicio_alquiler(nombre_servicio=None, tarifa_dia=None, equipo=None):
 
         if equipo is None or tarifa_dia is None or nombre_servicio is None:
             raise Servicio_NoDisponible_Error(
-                "Debe agregar todos los parametros: 'Nombre del servicio' | 'Tarifa por día' | 'Tipo de equipo'")  
+                "Debe agregar todos los parametros: \n\n 'Nombre del servicio' |"
+                " 'Tarifa por día' | 'Tipo de equipo'")  
         
         servicio = ServicioAlquilerEquipos(nombre_servicio, tarifa_dia, equipo)
         sistema.registrar_servicio(servicio)
@@ -112,7 +113,8 @@ def crear_servicio_reserva(nombre_servicio=None, tarifa_dia=None, capacidad=None
 
         if capacidad is None or tarifa_dia is None or nombre_servicio is None:
             raise Servicio_NoDisponible_Error(
-                "Debe agregar todos los parametros: 'Nombre del servicio' | 'Tarifa por día' | 'Capacidad de Sala'")
+                "Debe agregar todos los parametros: \n\n 'Nombre del servicio' |"
+                " 'Tarifa por día' | 'Capacidad de Sala'")
         
         servicio = ServicioReservaSalas(nombre_servicio, tarifa_dia, capacidad)
         sistema.registrar_servicio(servicio)
@@ -140,7 +142,8 @@ def crear_servicio_asesoria(nombre_servicio=None, tarifa_dia=None, especialidad=
         
         if especialidad is None or tarifa_dia is None or nombre_servicio is None:
             raise Servicio_NoDisponible_Error(
-                "Debe agregar todos los parametros: 'Nombre del servicio' | 'Tarifa por día' | 'Especialidad'")
+                "Debe agregar todos los parametros: \n\n 'Nombre del servicio' |"
+                " 'Tarifa por día' | 'Especialidad'")
         
         servicio = Servicio_Asesoria_Especializada(nombre_servicio, tarifa_dia, especialidad)
         sistema.registrar_servicio(servicio)
