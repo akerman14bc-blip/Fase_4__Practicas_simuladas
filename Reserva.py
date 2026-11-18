@@ -25,7 +25,12 @@ class Reserva(Entidad_Base):
     def __init__(self, id_reserva, cliente, servicio, duracion):
 
         # Validar el identificador de la reserva
-        if id_reserva is None or str(id_reserva).strip() == "":
+        if isinstance(id_reserva, bool) or not isinstance(id_reserva, (str, int)):
+            raise Reserva_Invalida_Error(
+                "El identificador debe ser texto o un numero entero."
+            )
+
+        if str(id_reserva).strip() == "":
             raise Reserva_Invalida_Error(
                 "El identificador de la reserva es obligatorio."
             )
@@ -45,16 +50,31 @@ class Reserva(Entidad_Base):
         # Validar la duración
         try:
             if isinstance(duracion, bool):
-                raise ValueError("La duración no puede ser un valor booleano.")
+                raise ValueError(
+                    "La duración no puede ser un valor booleano."
+                )
 
             duracion = float(duracion)
 
-            if not math.isfinite(duracion) or duracion <= 0:
-                raise ValueError("La duración debe ser mayor que cero.")
+            if not math.isfinite(duracion):
+                raise ValueError(
+                    "La duración debe ser un número finito."
+                )
+
+            if duracion <= 0:
+                raise ValueError(
+                    "La duración debe ser mayor que cero."
+                )
+
+            if duracion > 182:
+                raise ValueError(
+                    "La duración no puede superar los 182 días."
+                )
 
         except (ValueError, TypeError, OverflowError) as error:
             raise Reserva_Invalida_Error(
-                "La duración de la reserva no es válida."
+                "La duración de la reserva no es válida. "
+                "Debe ser mayor que cero y no superar los 182 días."
             ) from error
 
         # Guardar los datos de la reserva
@@ -179,6 +199,19 @@ class Reserva(Entidad_Base):
 
             costo = self._calcular_costo_servicio()
 
+            # Validar el costo calculado por el servicio
+            if isinstance(costo, bool):
+                raise ValueError(
+                    "El costo no puede ser un valor booleano."
+                )
+
+            costo = float(costo)
+
+            if not math.isfinite(costo) or costo < 0:
+                raise ValueError(
+                    "El costo debe ser finito y no negativo."
+                )
+
         except Reserva_Invalida_Error as error:
             logging.error(
                 f"Error al procesar la reserva {self.__id_reserva}: {error}"
@@ -191,6 +224,15 @@ class Reserva(Entidad_Base):
             )
             raise Reserva_Invalida_Error(
                 "No fue posible procesar el servicio de la reserva."
+            ) from error
+
+        except (ValueError, TypeError, OverflowError) as error:
+            logging.error(
+                f"Error en el costo de la reserva "
+                f"{self.__id_reserva}: {error}"
+            )
+            raise Reserva_Invalida_Error(
+                "El costo calculado para la reserva no es válido."
             ) from error
 
         except Exception as error:
