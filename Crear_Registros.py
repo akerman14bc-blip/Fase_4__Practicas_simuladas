@@ -16,7 +16,6 @@ import logging
 sistema = Gestion_Listas()
 
 
-
 def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
 
     try:
@@ -25,10 +24,10 @@ def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
         if id_cliente is None or nombre is None or correo is None or telefono is None:
             raise Cliente_Invalido_Error(
                 "Debe agregar todos los parametros: \n\n'ID Cliente' | 'Nombre' | 'Correo' | 'Telefono'")
-        
+
         cliente = Cliente(id_cliente, nombre, correo, telefono)
         sistema.registrar_cliente(cliente)
-    
+
     except Error_SoftwareFJ as error:
         logging.warning(f"No se pudo registrar al cliente {nombre}")
         raise Cliente_Invalido_Error(f"al registrar nuevo cliente: {error}")
@@ -42,21 +41,23 @@ def registrar_cliente(id_cliente=None, nombre=None, correo=None, telefono=None):
     finally:
         logging.info(f"Finalizó el intento de registro para el cliente {nombre}")
 
-def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion=None, **kwargs):  
+
+def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion=None, **kwargs):
 
     try:
         logging.info(f"[Registro]: Iniciando Registro de Nueva Reserva: ID {id_reserva}")
 
         if id_reserva is None or id_cliente is None or servicio is None or duracion is None:
             raise Reserva_Invalida_Error(
-                "Debe agregar todos los parametros: \n\n 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Duración'")
-        
+                "Debe agregar todos los parametros: \n\n 'ID Reserva' | 'ID Cliente' | 'Servicio' | 'Duración")
+
         cliente = sistema.buscar_cliente(id_cliente)
+
         if cliente is None:
             raise Reserva_Invalida_Error(f"No existe un cliente registrado con ID {id_cliente}")
-        
-        reserva = Reserva(id_reserva, cliente, servicio, duracion, **kwargs)   
-        sistema. registrar_reserva(reserva)
+
+        reserva = Reserva(id_reserva, cliente, servicio, duracion, **kwargs)
+        sistema.registrar_reserva(reserva)
 
     except Error_SoftwareFJ as error:
         logging.warning(f"No se pudo registrar la reserva : ID")
@@ -71,11 +72,10 @@ def nueva_reserva(id_reserva, id_cliente=None, servicio=None, duracion=None, **k
         print("")
         print(reserva.mostrar_informacion())
 
+        return reserva
+
     finally:
         logging.info(f"Finalizó el intento de reserva {id_reserva}")
-            
-
-    
 
 
 def crear_servicio_alquiler(nombre_servicio=None, tarifa_dia=None, equipo=None):
@@ -86,15 +86,15 @@ def crear_servicio_alquiler(nombre_servicio=None, tarifa_dia=None, equipo=None):
         if equipo is None or tarifa_dia is None or nombre_servicio is None:
             raise Servicio_NoDisponible_Error(
                 "Debe agregar todos los parametros: \n\n 'Nombre del servicio' |"
-                " 'Tarifa por día' | 'Tipo de equipo'")  
-        
+                " 'Tarifa por día' | 'Tipo de equipo'")
+
         servicio = ServicioAlquilerEquipos(nombre_servicio, tarifa_dia, equipo)
         sistema.registrar_servicio(servicio)
-    
+
     except Error_SoftwareFJ as error:
         logging.warning(f"No se puedo crear el servicio de Alquiler: {nombre_servicio}")
         raise Servicio_NoDisponible_Error(f"al crear nuevo servicio de Alquiler: {error}")
-    
+
     else:
         logging.info(f"[Servicio]: Nuevo Servicio de Alquiler creado: {nombre_servicio}")
         print("")
@@ -115,7 +115,7 @@ def crear_servicio_reserva(nombre_servicio=None, tarifa_dia=None, capacidad=None
             raise Servicio_NoDisponible_Error(
                 "Debe agregar todos los parametros: \n\n 'Nombre del servicio' |"
                 " 'Tarifa por día' | 'Capacidad de Sala'")
-        
+
         servicio = ServicioReservaSalas(nombre_servicio, tarifa_dia, capacidad)
         sistema.registrar_servicio(servicio)
 
@@ -139,19 +139,19 @@ def crear_servicio_asesoria(nombre_servicio=None, tarifa_dia=None, especialidad=
 
     try:
         logging.info(f"[Servicios]: Iniciando Creación de un Nuevo servicio de Asesoría: {nombre_servicio}")
-        
+
         if especialidad is None or tarifa_dia is None or nombre_servicio is None:
             raise Servicio_NoDisponible_Error(
                 "Debe agregar todos los parametros: \n\n 'Nombre del servicio' |"
                 " 'Tarifa por día' | 'Especialidad'")
-        
+
         servicio = Servicio_Asesoria_Especializada(nombre_servicio, tarifa_dia, especialidad)
         sistema.registrar_servicio(servicio)
 
     except Error_SoftwareFJ as error:
         logging.warning(f"No se puedo crear el servicio de Asesoría: {nombre_servicio}")
         raise Servicio_NoDisponible_Error(f"al crear nuevo servicio de Asesoría: {error}")
-                               
+
     else:
         logging.info(f"[Servicio]: Nuevo servicio de Asesoría creado: {nombre_servicio}")
         print("")
@@ -159,9 +159,13 @@ def crear_servicio_asesoria(nombre_servicio=None, tarifa_dia=None, especialidad=
         print(f"Nombre: {nombre_servicio} | Tarifa diaria: {tarifa_dia} | Área: {especialidad}")
 
     finally:
-        logging.info(f"Finalizó el intento de creación del nuevo servicio {nombre_servicio} ")
-    
+        logging.info(f"Finalizó el intento de creación del nuevo servicio {nombre_servicio}")
+
+
+# ====================== Servicios de ejemplo ======================
 
 sala_mediana = ServicioReservaSalas("Reserva de sala Mediana", 80000, 50)
+
 alquiler_laptop = ServicioAlquilerEquipos("Alquiler de Laptop", 30000, "Laptop Core i5 HP")
+
 asesoria_ti = Servicio_Asesoria_Especializada("Asesoría en Programación", 90000, "Desarrollo")
