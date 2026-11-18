@@ -274,3 +274,4 @@ class Reserva(Entidad_Base):
 
     def __str__(self):
         return self.mostrar_informacion()
+        
