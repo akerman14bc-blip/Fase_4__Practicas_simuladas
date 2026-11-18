@@ -1,9 +1,7 @@
 import time
-
 import logging
 
 from Excepciones import Error_SoftwareFJ
-
 from Crear_Registros import *
 
 from Logs import archivo_Logs
@@ -122,18 +120,18 @@ def ejecutar_simulacion():
                 nombre_servicio="Asesoría Jurídica", tarifa_dia=220000, especialidad="Derecho")),
 
 
-        # Operación 9: Prueba de manejo de excepciones por falta de tarifa diaria.
-        ("Operación 9 Crear Nuevo Servicio: Fallida (Faltó la tarifa por día)",
+        # Operación 9: Prueba de validación por tarifa diaria inválida.
+        ("Operación 9 Crear Nuevo Servicio: Fallida (Tarifa diaria inválida)",
 
             lambda: crear_servicio_alquiler(
-                nombre_servicio="Alquiler TV", equipo="Sony Smart 50'")),
+    nombre_servicio="Alquiler TV", tarifa_dia=9000, equipo="Sony Smart 50'")),
 
 
-        # Operación 10: Prueba de manejo de errores graves.
-        ("operación 10 Crear Nuevo Servicio: Fallido (Error por fuera de las validaciones)",
+        # Operación 10: Prueba de validación por capacidad insuficiente de una sala.
+        ("Operación 10 Crear Nuevo Servicio: Fallido (Capacidad insuficiente de la nueva sala)",
 
             lambda: crear_servicio_reserva(
-                nombre_servicio="Sala Pequeña", tarifa_dia=40000, capacidad=s)),
+                nombre_servicio="Sala Pequeña", tarifa_dia=40000, capacidad=19)),
 
 
         # Operación 11: Prueba de confirmación y cancelación de una reserva.
@@ -150,16 +148,19 @@ def ejecutar_simulacion():
     # ====================== Procesamiento de las Operaciones ======================
 
     for numero, (desc, acc) in enumerate(operaciones, start=1):
+
         print("\n\n" + "=" * 75)
         time.sleep(5)
         print(f"{desc}")
         time.sleep(2)
+
         try:
             acc()
 
         except Error_SoftwareFJ as error:
             logging.error(f"{error}")
             print(f"\nError controlado {error}")
+
             info_error = f"\nError en operación # {numero} controlado correctamente."
             logging.info(info_error)
             print(info_error)
@@ -167,6 +168,7 @@ def ejecutar_simulacion():
         except Exception as error:
             logging.critical(f"Error inesperado: {error}")
             print(f"\n¡Error inesperado!: {error}\n")
+
             info_error = f"Error inesperado en operación # {numero} controlado."
             logging.info(info_error)
             print(info_error)
@@ -184,8 +186,16 @@ def ejecutar_simulacion():
 
     # ====================== Resumen Final de la Simulación ======================
 
-    print("="*75 + "\n\n\n" + "="*75)
+    print("=" * 75 + "\n\n\n" + "=" * 75)
     time.sleep(5)
+
     sistema.mostrar_resumen_listas()
 
     print("\n ============   Simulación Finalizada con Éxito   ==================\n")
+
+
+# ====================== Ejecución del Programa ======================
+
+if __name__ == "__main__":
+    ejecutar_simulacion()
+
