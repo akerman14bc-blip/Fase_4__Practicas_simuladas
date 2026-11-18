@@ -1,3 +1,4 @@
+import time
 
 import logging
 
@@ -59,7 +60,7 @@ def crear_y_cancelar_reserva(id_reserva, id_cliente, servicio, duracion):
 def ejecutar_simulacion():
 
     print("\n" + "=" * 75)
-    print("                Iniciando Simulación de Software FJ")
+    print("\n                 Iniciando Simulación de Software FJ....")
 
     operaciones = [
 
@@ -149,9 +150,10 @@ def ejecutar_simulacion():
     # ====================== Procesamiento de las Operaciones ======================
 
     for numero, (desc, acc) in enumerate(operaciones, start=1):
-        print("="*75 + "\n\n\n" + "=" * 75)
+        print("\n\n" + "=" * 75)
+        time.sleep(5)
         print(f"{desc}")
-
+        time.sleep(2)
         try:
             acc()
 
@@ -183,6 +185,7 @@ def ejecutar_simulacion():
     # ====================== Resumen Final de la Simulación ======================
 
     print("="*75 + "\n\n\n" + "="*75)
+    time.sleep(5)
     sistema.mostrar_resumen_listas()
 
     print("\n ============   Simulación Finalizada con Éxito   ==================\n")
