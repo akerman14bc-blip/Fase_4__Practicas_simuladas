@@ -192,10 +192,3 @@ def ejecutar_simulacion():
     sistema.mostrar_resumen_listas()
 
     print("\n ============   Simulación Finalizada con Éxito   ==================\n")
-
-
-# ====================== Ejecución del Programa ======================
-
-if __name__ == "__main__":
-    ejecutar_simulacion()
-
