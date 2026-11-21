@@ -100,25 +100,28 @@ Requisitos:
 Python 3.10 o superior.
 
 ____________________________________
-Ejecución del Proyecto:
+Ejecución del Proyecto en terminal:
 
 Clonar el repositorio: 
+
 git clone https://github.com/akerman14bc-blip/Fase_4__Practicas_simuladas.git
 
 Entrar al proyecto: 
+
 cd Fase_4__Practicas_simuladas
 
 Ejecutar la aplicación: 
+
 python Main.py
 
 ____________________________________
 Equipo Académico:
 
-- 
+- Andrés Fernando Vanegas Usma
 
-- 
+- Guiller Alfonso Morales Cruz
 
-- 
+- Nelson Geovanny Merchán Ceballos
 
 Universidad Nacional Abierta y a Distancia
 
